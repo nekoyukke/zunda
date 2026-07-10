@@ -66,7 +66,7 @@ class Memory(LValue):
 # codelabel
 
 @dataclass(frozen=True)
-class CodeLabel:
+class CodeLabel(Operand):
     name:str
     def __repr__(self) -> str:
         return f"{self.name}"
@@ -74,7 +74,7 @@ class CodeLabel:
 # functionlabel
 
 @dataclass(frozen=True)
-class FunctionLabel:
+class FunctionLabel(Operand):
     name:str
     def __repr__(self) -> str:
         return f"@{self.name}"
