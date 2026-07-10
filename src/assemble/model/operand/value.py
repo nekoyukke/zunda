@@ -1,21 +1,22 @@
 from dataclasses import dataclass
+from abc import ABC, abstractmethod
 
 @dataclass(frozen=True)
-class Operand():
+class Operand(ABC):
     pass
 
 # Values
 
 @dataclass(frozen=True)
-class Value(Operand):
+class Value(Operand, ABC):
     pass
 
 @dataclass(frozen=True)
-class LValue(Value):
+class LValue(Value, ABC):
     pass
 
 @dataclass(frozen=True)
-class RValue(Value):
+class RValue(Value, ABC):
     pass
 
 @dataclass(frozen=True)
@@ -33,9 +34,11 @@ class ValueLabel(RValue):
 # immediate
 
 @dataclass(frozen=True)
-class Immediate(RValue):
+class Immediate(RValue, ABC):
+    @abstractmethod
     def get_value(self) -> int|str:
         raise
+    @abstractmethod
     def __repr__(self) -> str:
         return f"#{self.get_value()}"
 
